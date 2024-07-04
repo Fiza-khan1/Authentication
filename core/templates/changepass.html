@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+</head>
+<body>
+    <h2>Change Password</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ fm.non_field_errors }}
+        
+        <div>
+            {{ fm.old_password.label_tag }}
+            {{ fm.old_password }}
+            {% for error in fm.old_password.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ fm.new_password1.label_tag }}
+            {{ fm.new_password1 }}
+            {% for error in fm.new_password1.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ fm.new_password2.label_tag }}
+            {{ fm.new_password2 }}
+            {% for error in fm.new_password2.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <button type="submit">Change Password</button>
+    </form>
+    
+    <a href="{% url 'profile' %}">Cancel</a>
+</body>
+</html>

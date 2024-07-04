@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        .success {
+            color: green;
+            font-size: larger;
+        }
+        .error {
+            color: red;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Registration</h2>
+    <form method="post" action="" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+            <br>
+        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <button type="submit">Register</button>
+    </form>
+    <a href="{%url 'login'%}">LOGIN</a>
+</body>
+</html>
+
+
+ 
+

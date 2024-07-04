@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+</head>
+<style>
+    .error{
+        color:red
+    }
+</style>
+<h2>LOGIN PAGE</h2>
+<form action="" method='post'>
+    {%csrf_token%}
+    {% if fm.non_field_errors %}
+    <div class="error">
+        {% for error in fm.non_field_errors %}
+        <div class="error">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{%for field in fm%}
+{{field.label_tag}}{{field}} {{field.errors}} <br>
+{%endfor%}
+<!-- {{fm}} -->
+<button type="submit">SUBMIT</button>
+</form>
+<a href="{%url 'register'%}">SIGN_UP</a>
+    
+</body>
+</html>
