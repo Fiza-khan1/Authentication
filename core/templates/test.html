@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .user-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .field-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .field-value {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
-{{fm}}
+<form method="post" action="" novalidate>
+    {% csrf_token %}
+    {% for field in fm %}
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+        <br>
+    {% endfor %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <button type="submit">Register</button>
+    <a href="{%url 'logout'%}">LOGOUT</a>
+</form>
     
 </body>
 </html>
